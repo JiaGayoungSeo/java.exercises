@@ -30,10 +30,6 @@ public abstract class Ticket implements Comparable{
         return TicketCount;
     }
 
-    public static void setTicketCount(int ticketCount) {
-        TicketCount = ticketCount;
-    }
-
     public String getTicketDescription() {
         return ticketDescription;
     }
@@ -57,6 +53,12 @@ public abstract class Ticket implements Comparable{
     public void setCompleted() {
         System.out.println ( "It is completed." );
         this.completed = true;
+    }
+
+    public String completeToString(){
+        if(this.completed){
+            return "Open";
+        } else return "Closed";
     }
 
     public abstract void shortDisplay();

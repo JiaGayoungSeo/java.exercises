@@ -68,4 +68,9 @@ public class Date {
     public int getDay() {
         return day;
     }
+
+    @Override
+    public String toString() {
+        return day+"/"+month+"/"+year;
+    }
 }
