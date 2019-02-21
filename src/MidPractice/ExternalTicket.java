@@ -8,6 +8,7 @@ public class ExternalTicket extends Ticket {
     public ExternalTicket(String description, Date submitted, String companyName, String contactInfo ){
         super.setTicketDescription ( description );
         super.setDateSubmitted ( submitted );
+        TicketCount++;
         super.setTicketId ( getTicketCount ()+1000 );
         this.companyName = companyName;
         this.contactInfo = contactInfo;
@@ -30,7 +31,7 @@ public class ExternalTicket extends Ticket {
 
     @Override
     public void shortDisplay() {
-        System.out.println ( getTicketId ()+": "+getDateSubmitted ().toString ()+"-"+getCompanyName ()+completeToString () );
+        System.out.println ( getTicketId ()+": "+getDateSubmitted ().toString ()+" - "+getCompanyName ()+" "+completeToString () );
     }
 
     @Override

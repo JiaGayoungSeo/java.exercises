@@ -26,7 +26,7 @@ public class Date {
         if(month>0 && month<13){
             this.month = month;
         } else this.month = 1;
-
+        this.year = year;
 
     }
 
@@ -71,6 +71,6 @@ public class Date {
 
     @Override
     public String toString() {
-        return day+"/"+month+"/"+year;
+        return this.month+"/"+this.day+"/"+this.year;
     }
 }

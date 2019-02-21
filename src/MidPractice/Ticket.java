@@ -1,7 +1,7 @@
 package MidPractice;
 
 public abstract class Ticket implements Comparable{
-    private static int TicketCount;
+    public static int TicketCount;
     private int ticketId;
     private String ticketDescription;
     private Date dateSubmitted;
@@ -11,7 +11,7 @@ public abstract class Ticket implements Comparable{
     public Ticket(String ticketDescription, Date dateSubmitted){
         this.ticketDescription = ticketDescription;
         this.dateSubmitted = dateSubmitted;
-        this.TicketCount++;
+        TicketCount++;
     }
 
 
@@ -51,7 +51,6 @@ public abstract class Ticket implements Comparable{
     }
 
     public void setCompleted() {
-        System.out.println ( "It is completed." );
         this.completed = true;
     }
 
@@ -69,11 +68,11 @@ public abstract class Ticket implements Comparable{
     public int compareTo(Object o) {
         Ticket ticket = (Ticket) o;
         if(this.getTicketId ()>ticket.getTicketId ()){
-            return -1;
+            return 1;
         }
         if(this.getTicketId ()==ticket.getTicketId ()){
             return 0;
         }
-        else return 1;
+        else return -1;
     }
 }

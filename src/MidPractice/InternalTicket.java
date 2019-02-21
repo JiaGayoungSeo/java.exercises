@@ -7,6 +7,7 @@ public class InternalTicket extends Ticket {
     public InternalTicket(String description, Date submitted, String assignedTo){
         super.setTicketDescription ( description );
         super.setDateSubmitted ( submitted );
+        TicketCount++;
         super.setTicketId ( getTicketCount ()+1000 );
         this.assignedTo = assignedTo;
     }
@@ -21,7 +22,7 @@ public class InternalTicket extends Ticket {
 
     @Override
     public void shortDisplay() {
-        System.out.printf ( "%d : %d/$d/%d - s%", getTicketId (),getDateSubmitted ().getMonth (),getDateSubmitted ().getDay (),getDateSubmitted ().getYear (),getAssignedTo () +completeToString ());
+        System.out.println ( getTicketId () +": "+getDateSubmitted ().toString ()+" - "+getAssignedTo () +" "+completeToString ());
 
     }
 
