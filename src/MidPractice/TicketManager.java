@@ -7,9 +7,13 @@ import java.util.Scanner;
 public class TicketManager {
     static Scanner input;
     static Ticket[] tickets;
+
     public static void main(String[] args){
         getData ();
-        menu1 ();
+        int choice =0;
+        while(choice!=7){
+            execute ( showMenu () );
+        }
     }
 
     static void getData(){
@@ -49,6 +53,18 @@ public class TicketManager {
         return  getValidChoice ( 1,7 );
     }
 
+    static void execute(int choice){
+        switch (choice){
+            case 1: menu1 (); break;
+            case 2: menu2 (); break;
+            case 3: menu3 (); break;
+            case 4 : menu4 (); break;
+            case 5 : menu5 (); break;
+            case 6: menu6 (); break;
+            case 7: System.exit ( 0 );
+        }
+    }
+
     static void menu1(){
         Arrays.sort ( tickets );
         for(int i=0;i<tickets.length;i++){
@@ -60,14 +76,65 @@ public class TicketManager {
         input = new Scanner ( System.in );
         return  input.nextInt ();
     }
+
     static void menu2(){
         System.out.println ( "Enter a ticket ID" );
         int ticketId = inputNumber ();
         for(int i=0;i<tickets.length;i++){
             if(ticketId == tickets[i].getTicketId ()){
                 tickets[i].longDisplay ();
-
             }
         }
+    }
+
+    static void menu3(){
+        for(int i=0;i<tickets.length;i++){
+            if(tickets[i] instanceof  ExternalTicket){
+                if(tickets[i].isCompleted ()==false){
+                    System.out.println ( ((ExternalTicket)tickets[i]).getCompanyName () );
+                }
+            }
+        }
+    }
+
+    static void menu4(){
+        for(int i=0;i<tickets.length;i++){
+            if(tickets[i].getDateSubmitted ().getDay ()==22 && tickets[i].getDateSubmitted ().getMonth ()==2 && tickets[i].getDateSubmitted ().getYear ()==2016){
+                 tickets[i].longDisplay ();
+                 System.out.println ( "------------------------------------------" );
+            }
+        }
+    }
+    static void menu5(){
+        System.out.println ( "Enter a ticket ID" );
+        int ticketId = inputNumber ();
+        for(int i=0;i<tickets.length;i++ ){
+            if(ticketId==tickets[i].getTicketId ()) {
+                tickets[i].setCompleted ();
+                System.out.println ( "Closed!" );
+            }
+        }
+    }
+
+    static void menu6(){
+        System.out.println ( "Enter the ticket ID" );
+        int ticketID = inputNumber ();
+        for(int i= 0;i<tickets.length;i++){
+            if(tickets[i].getTicketId ()==ticketID){
+               if(tickets[i] instanceof ExternalTicket){
+                   tickets[i] = newInternalTicket ( (ExternalTicket)tickets[i] );
+               }
+            }
+        }
+    }
+
+    static InternalTicket newInternalTicket(ExternalTicket externalTicket){
+        input = new Scanner ( System.in );
+        System.out.println ( "Enter a name to assign the ticket to" );
+        System.out.print (">>");
+        String name = input.next (  );
+        InternalTicket newTicket = new InternalTicket ( externalTicket.getTicketDescription (),externalTicket.getDateSubmitted (),name );
+        System.out.println ( "Transferred to Internal ticket! " );
+        return  newTicket;
     }
 }

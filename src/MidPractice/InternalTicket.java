@@ -5,9 +5,9 @@ public class InternalTicket extends Ticket {
 
     public InternalTicket(){}
     public InternalTicket(String description, Date submitted, String assignedTo){
+        super();
         super.setTicketDescription ( description );
         super.setDateSubmitted ( submitted );
-        TicketCount++;
         super.setTicketId ( getTicketCount ()+1000 );
         this.assignedTo = assignedTo;
     }

@@ -1,19 +1,21 @@
 package MidPractice;
 
 public abstract class Ticket implements Comparable{
-    public static int TicketCount;
+    private static int TicketCount;
     private int ticketId;
     private String ticketDescription;
     private Date dateSubmitted;
     private boolean completed;
 
-    public Ticket(){}
+    public Ticket(){
+        TicketCount++;
+    }
     public Ticket(String ticketDescription, Date dateSubmitted){
+        this.completed =false;
         this.ticketDescription = ticketDescription;
         this.dateSubmitted = dateSubmitted;
         TicketCount++;
     }
-
 
     public int getTicketId() {
         return ticketId;
@@ -51,13 +53,16 @@ public abstract class Ticket implements Comparable{
     }
 
     public void setCompleted() {
-        this.completed = true;
+        if(isCompleted ()){
+            System.out.println ( "It is already completed" );
+        }else completed = true;
     }
+
 
     public String completeToString(){
         if(this.completed){
-            return "Open";
-        } else return "Closed";
+            return "Close";
+        } else return "Open";
     }
 
     public abstract void shortDisplay();

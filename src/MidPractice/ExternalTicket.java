@@ -6,9 +6,9 @@ public class ExternalTicket extends Ticket {
 
     public ExternalTicket(){}
     public ExternalTicket(String description, Date submitted, String companyName, String contactInfo ){
+        super();
         super.setTicketDescription ( description );
         super.setDateSubmitted ( submitted );
-        TicketCount++;
         super.setTicketId ( getTicketCount ()+1000 );
         this.companyName = companyName;
         this.contactInfo = contactInfo;
